@@ -1,0 +1,47 @@
+.tileContainer {
+    background-color: white;
+    height: 120px;
+    width: 300px;
+    border-radius: 15px;
+    margin: 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+.tileContainer:hover {
+    /* border: 1px solid #1677ff; */
+    box-shadow: 0 0 0 1px #1677ff;
+    cursor: pointer;
+}
+
+.tileImageDiv {
+    width: 20%;
+    margin-top: 25px;
+    margin-left: 15px;
+}
+
+.tileDescDiv {
+    width: 76%;
+    border-radius: 15px;
+    padding-right: 10px;
+    margin-left: 5px;
+}
+
+.heading {
+    font-size: large;
+    height: 30%;
+    display: flex;
+    align-items: start;
+    font-size: 18px;
+}
+
+.description {
+    height: 65%;
+}
+
+.description p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}

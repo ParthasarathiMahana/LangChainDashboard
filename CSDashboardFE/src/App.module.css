@@ -1,0 +1,11 @@
+.mainContainer {}
+
+.tileContainer {
+    margin-top: 10px;
+    height: 87vh;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+}
