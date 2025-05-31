@@ -1,2 +1,5 @@
 CSDashboardFE/node_modules
 CSDashboardFE/package-lock.json
+CSDashboardBE/node_modules
+CSDashboardBE/package-lock.json
+CSDashboardBE/.env

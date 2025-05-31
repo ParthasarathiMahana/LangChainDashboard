@@ -34,9 +34,9 @@ const TicketModal = ({ open, setOpen, heading, description, status }) => {
 
     return (
         <Modal open={open} onCancel={() => setOpen(false)} footer={[
-            <Button onClick={() => setOpen(false)}>Cancel</Button>,
-            <Button type='primary' onClick={askAI}>Ask AI for Response</Button>,
-            <Button type='primary' onClick={handleSubmit} disabled={response ? false : true}>Submit</Button>
+            <Button onClick={() => setOpen(false)} key={1}>Cancel</Button>,
+            <Button type='primary' onClick={askAI} key={2}>Ask AI for Response</Button>,
+            <Button type='primary' onClick={handleSubmit} key={3} disabled={response ? false : true}>Submit</Button>
         ]}>
             <ModalContainer heading={heading} description={description} status={status} setResponse={setResponse} />
         </Modal>
