@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import axios from 'axios'
 import styles from './App.module.css'
 import SearchBar from './components/searchbar/SearchBar'
 import { TicketTile } from './components/ticketTIle/TicketTile'
+import { useEffect } from 'react'
 
 const tickets = [
   {
@@ -19,14 +21,27 @@ const tickets = [
 ]
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ticketData, setTicketData] = useState([])
+
+  const getTickets = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:4000/ticket')
+      setTicketData(data)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getTickets()
+  }, [])
 
   return (
     <>
       <div className={styles.mainContainer}>
         <SearchBar />
         <div className={styles.tileContainer}>
-          {tickets.map((item, index) => {
+          {ticketData.map((item, index) => {
             return (
               <TicketTile
                 key={index}
