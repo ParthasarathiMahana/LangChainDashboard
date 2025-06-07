@@ -48,7 +48,10 @@ function App() {
                 ticketType={item.ticketType}
                 heading={item.heading}
                 description={item.description}
-                status={item.status} />
+                status={item.status}
+                userID={item.userID}
+                ticketID={item.ticketID}
+              />
             )
           })}
         </div>

@@ -7,7 +7,8 @@ const Tickets = postgres.define('Tickets', {
     heading: DataTypes.STRING,
     description: DataTypes.STRING,
     ticketType: DataTypes.STRING,
-    status: DataTypes.BOOLEAN
+    status: DataTypes.BOOLEAN,
+    reply: DataTypes.STRING
 })
 
 module.exports = Tickets

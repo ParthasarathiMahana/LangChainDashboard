@@ -16,4 +16,18 @@ async function createTicket(req, res) {
     }
 }
 
-module.exports = { getAllTicket, createTicket }
+async function addReplyToTicket(req, res) {
+    let ticketId = req.params.ticketID
+    let reply = req.body.response
+    console.log(ticketId, reply);
+
+    try {
+        const ticket = await Tickets.update({ reply: reply, status: true }, { where: { ticketID: ticketId } })
+        res.status(201).json({ message: "Reply added to ticket successfully." })
+    } catch (error) {
+        console.log("Error while updating ticket ", ticketId, error);
+        res.status(500).json({ error: `Error while adding response to ${ticketId}:, ${error}` })
+    }
+}
+
+module.exports = { getAllTicket, createTicket, addReplyToTicket }
