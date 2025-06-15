@@ -19,7 +19,7 @@ async function createTicket(req, res) {
 async function addReplyToTicket(req, res) {
     let ticketId = req.params.ticketID
     let reply = req.body.response
-    console.log(ticketId, reply);
+    console.log("ticketId: ", ticketId, "reply: ");
 
     try {
         const ticket = await Tickets.update({ reply: reply, status: true }, { where: { ticketID: ticketId } })

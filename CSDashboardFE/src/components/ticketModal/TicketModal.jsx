@@ -39,22 +39,25 @@ const TicketModal = ({ ticketID, open, setOpen, heading, description, status, us
     }
 
     const handleSubmit = async () => {
+        console.log(ticketID);
+
         if (!response) {
             console.error("Response can not be empty.", response);
         } else {
             try {
-                let postResponse = await axios.post(`http://localhost:4000/ticket/333?ticketID=${ticketID}`, { response: response }, {
+                let postResponse = await axios.post(`http://localhost:4000/ticket/${ticketID}`, { response: response }, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 })
                 console.log(postResponse);
+                await axios.get('http://localhost:4000/ticket')
                 setOpen(false)
             } catch (error) {
                 console.error("error while submitting the response", error);
             }
         }
-        console.log("Submit form in progress...", ticketID, userID)
+        // console.log("Submit form in progress...", ticketID, userID)
     }
 
     useEffect(() => {
