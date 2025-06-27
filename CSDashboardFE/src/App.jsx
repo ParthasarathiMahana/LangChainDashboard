@@ -51,6 +51,7 @@ function App() {
                 status={item.status}
                 userID={item.userID}
                 ticketID={item.ticketID}
+                reply = {item?.reply}
               />
             )
           })}

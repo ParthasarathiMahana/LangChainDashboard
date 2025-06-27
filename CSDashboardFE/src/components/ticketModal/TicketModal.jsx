@@ -4,7 +4,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 
-const ModalContainer = ({ heading, description, status, setResponse, userDetails }) => {
+const ModalContainer = ({ heading, description, status, setResponse, userDetails, reply }) => {
 
     return (
         <div>
@@ -22,17 +22,21 @@ const ModalContainer = ({ heading, description, status, setResponse, userDetails
                     <Input.TextArea value={description} rows={3} readOnly />
                 </Form.Item>
                 <Form.Item label={<b>Response</b>}>
-                    <Input.TextArea rows={5} onChange={(e) => setResponse(e.target.value)} />
+                    <Input.TextArea value={reply ? reply : ''} rows={5} onChange={(e) => setResponse(e.target.value)} />
                 </Form.Item>
             </Form>
         </div>
     )
 }
 
-const TicketModal = ({ ticketID, open, setOpen, heading, description, status, userID }) => {
+const TicketModal = ({ ticketID, open, setOpen, heading, description, status, userID, reply }) => {
 
     const [response, setResponse] = useState('')
     const [userDetails, setUserDetails] = useState({})
+
+    useEffect(()=>{
+        setResponse(reply)
+    }, [reply])
 
     const askAI = async () => {
         console.log("Calling Ask AI api to get the response...")
@@ -50,14 +54,12 @@ const TicketModal = ({ ticketID, open, setOpen, heading, description, status, us
                         "Content-Type": "application/json"
                     }
                 })
-                console.log(postResponse);
                 await axios.get('http://localhost:4000/ticket')
                 setOpen(false)
             } catch (error) {
                 console.error("error while submitting the response", error);
             }
         }
-        // console.log("Submit form in progress...", ticketID, userID)
     }
 
     useEffect(() => {
@@ -75,11 +77,16 @@ const TicketModal = ({ ticketID, open, setOpen, heading, description, status, us
 
     return (
         <Modal open={open} onCancel={() => setOpen(false)} footer={[
-            <Button onClick={() => setOpen(false)} key={1}>Cancel</Button>,
-            <Button type='primary' onClick={askAI} key={2}>Ask AI for Response</Button>,
-            <Button type='primary' onClick={handleSubmit} key={3} disabled={response ? false : true}>Submit</Button>
+            <div style={{display:"flex", justifyContent:"flex-end", gap:"2px"}}>
+                <Button onClick={() => setOpen(false)} key={1}>Cancel</Button>
+                <Button type='primary' onClick={askAI} key={2}>
+                <img src='/aiGen.svg' height={20}/>
+                Ask AI for Response
+                </Button>
+                <Button type='primary' onClick={handleSubmit} key={3} disabled={response ? false : true}>Submit</Button>
+            </div>
         ]}>
-            <ModalContainer heading={heading} description={description} status={status} setResponse={setResponse} userDetails={userDetails} />
+            <ModalContainer heading={heading} description={description} status={status} setResponse={setResponse} userDetails={userDetails} reply={response} />
         </Modal>
     )
 }

@@ -50,5 +50,5 @@ app.listen(4000, (err) => {
     if (err) {
         return console.log("Error occurred while starting the server!!!", err);
     }
-    console.error("Server is up and running on port $000.");
+    console.error("Server is up and running on port 4000.");
 });

@@ -4,7 +4,7 @@ import { Tag } from 'antd'
 import { CheckCircleOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import TicketModal from '../ticketModal/TIcketModal';
 
-export const TicketTile = ({ ticketType, heading, description, status, userID, ticketID }) => {
+export const TicketTile = ({ ticketType, heading, description, status, userID, ticketID, reply }) => {
     const [open, setOpen] = useState(false)
     return (
         <>
@@ -26,7 +26,7 @@ export const TicketTile = ({ ticketType, heading, description, status, userID, t
                     </div>
                 </div>
             </div>
-            <TicketModal ticketID={ticketID} open={open} setOpen={setOpen} heading={heading} description={description} status={status} userID={userID} />
+            <TicketModal ticketID={ticketID} open={open} setOpen={setOpen} heading={heading} description={description} status={status} userID={userID} reply={reply}/>
         </>
     )
 }
