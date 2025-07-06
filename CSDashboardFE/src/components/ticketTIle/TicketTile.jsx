@@ -8,7 +8,7 @@ export const TicketTile = ({ ticketType, heading, description, status, userID, t
     const [open, setOpen] = useState(false)
     return (
         <>
-            <div className={styles.tileContainer} onClick={() => setOpen(true)}>
+            <div className={styles.tileWrapper} onClick={() => setOpen(true)}>
                 <div className={styles.tileImageDiv}>
                     <img src={ticketType === 'order' ? "/query.svg" : "/product.svg"} alt={ticketType === 'order' ? "query" : "product"} height='40px' />
                 </div>
@@ -26,7 +26,7 @@ export const TicketTile = ({ ticketType, heading, description, status, userID, t
                     </div>
                 </div>
             </div>
-            <TicketModal ticketID={ticketID} open={open} setOpen={setOpen} heading={heading} description={description} status={status} userID={userID} reply={reply}/>
+            <TicketModal ticketType={ticketType} ticketID={ticketID} open={open} setOpen={setOpen} heading={heading} description={description} status={status} userID={userID} reply={reply}/>
         </>
     )
 }
